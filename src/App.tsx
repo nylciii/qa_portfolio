@@ -1,7 +1,7 @@
 import heroImg from "./assets/hero.png";
 import bg from "./assets/bg.jpg";
 
-const navItems = ["Home", "About", "Skills", "Experience", "Contact"];
+const navItems = ["Home", "About", "Skills", "Experience", "Certificates", "Contact"];
 
 const devTech = [
   "React",
@@ -23,6 +23,21 @@ const qaTools = [
   "Robot Framework",
   "Katalon Studio",
   "JIRA",
+];
+
+const certificates = [
+  {
+    title: "Playwright Automation Certificate",
+    image: "/certs/playwright.png",
+  },
+  {
+    title: "Selenium WebDriver Certificate",
+    image: "/certs/selenium.png",
+  },
+  {
+    title: "API Testing with Postman",
+    image: "/certs/postman.png",
+  },
 ];
 
 function App() {
@@ -81,9 +96,8 @@ function App() {
             </div>
           </div>
 
-          {/* RIGHT IMAGE (FIXED LOOK) */}
+          {/* RIGHT IMAGE */}
           <div className="relative">
-            {/* soft glow */}
             <div className="absolute inset-0 rounded-full blur-2xl bg-cyan-400/20"></div>
 
             <img
@@ -114,7 +128,6 @@ function App() {
             Technologies & Tools
           </h2>
 
-          {/* DEV */}
           <div className="mb-12">
             <h3 className="text-lg font-medium mb-4 text-white">Development</h3>
 
@@ -130,7 +143,6 @@ function App() {
             </div>
           </div>
 
-          {/* QA */}
           <div>
             <h3 className="text-lg font-medium mb-4 text-white">QA & Automation</h3>
 
@@ -155,7 +167,7 @@ function App() {
 
           <div className="space-y-10">
 
-            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm hover:border-cyan-400/30 transition">
+            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
               <h3 className="font-semibold text-lg mb-2">
                 Backend Intern – Focus Bear
               </h3>
@@ -166,7 +178,7 @@ function App() {
               </ul>
             </div>
 
-            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm hover:border-cyan-400/30 transition">
+            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
               <h3 className="font-semibold text-lg mb-2">
                 AI Analyst – Innodata
               </h3>
@@ -177,6 +189,35 @@ function App() {
               </ul>
             </div>
 
+          </div>
+        </section>
+
+        {/* CERTIFICATES */}
+        <section className="px-10 md:px-20 py-20">
+          <h2 className="text-2xl font-semibold mb-10 text-cyan-400">
+            Certificates
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {certificates.map((cert) => (
+              <div
+                key={cert.title}
+                className="bg-white/5 border border-white/10 rounded-xl overflow-hidden 
+                backdrop-blur-sm hover:border-cyan-400/30 transition group"
+              >
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  className="w-full h-40 object-cover group-hover:scale-105 transition duration-300"
+                />
+
+                <div className="p-4">
+                  <h3 className="text-sm font-medium text-gray-200">
+                    {cert.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
