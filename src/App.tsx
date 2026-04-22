@@ -1,5 +1,6 @@
 import heroImg from "./assets/hero.png";
 import bg from "./assets/bg.jpg";
+import { motion } from "framer-motion";
 
 const navItems = ["Home", "About", "Skills", "Experience", "Certificates", "Contact"];
 
@@ -26,220 +27,248 @@ const qaTools = [
 ];
 
 const certificates = [
-  {
-    title: "Playwright Automation Certificate",
-    image: "/certs/playwright.png",
-  },
-  {
-    title: "Selenium WebDriver Certificate",
-    image: "/certs/selenium.png",
-  },
-  {
-    title: "API Testing with Postman",
-    image: "/certs/postman.png",
-  },
+  { title: "Playwright Automation Certificate", image: "/certs/playwright.png" },
+  { title: "Selenium WebDriver Certificate", image: "/certs/selenium.png" },
+  { title: "API Testing with Postman", image: "/certs/postman.png" },
 ];
 
 function App() {
   return (
     <div
-      className="min-h-screen text-white bg-cover bg-center bg-no-repeat relative"
+      className="min-h-screen scroll-smooth text-gray-800 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bg})` }}
     >
-      {/* OVERLAY */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* NAVBAR */}
+      <nav className="fixed w-full z-50 flex justify-between items-center px-10 md:px-20 py-5 backdrop-blur-md bg-white/40 border-b border-gray-200">
+        <h1 className="text-cyan-600 font-bold text-2xl tracking-widest">
+          Scherz<span className="text-gray-800">Code</span>
+        </h1>
 
-      <div className="relative z-10">
+        <ul className="hidden md:flex gap-8 text-gray-600 text-sm">
+          {navItems.map((item) => (
+            <li key={item}>
+              <a
+                href={`#${item.toLowerCase()}`}
+                className="hover:text-cyan-600 relative group transition"
+              >
+                {item}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-cyan-500 transition-all group-hover:w-full"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
-        {/* NAVBAR */}
-        <nav className="flex justify-between items-center px-10 md:px-20 py-6 backdrop-blur-md bg-white/5 border-b border-white/10">
-          <h1 className="text-cyan-400 font-bold text-2xl tracking-widest">
-            Scherz<span className="text-white">Code</span>
+      {/* HERO */}
+      <section
+        id="home"
+        className="flex flex-col md:flex-row items-center justify-between px-10 md:px-20 pt-32 pb-20 gap-12"
+      >
+        {/* TEXT */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-lg"
+        >
+          <h4 className="text-cyan-600 text-sm mb-3 tracking-widest">
+            HI THERE,
+          </h4>
+
+          <h1 className="text-3xl md:text-5xl font-semibold leading-tight mb-4">
+            Junior QA <br />
+            <span className="text-cyan-600">Automation Engineer</span>
           </h1>
 
-          <ul className="hidden md:flex gap-8 text-gray-300 text-sm">
-            {navItems.map((item) => (
-              <li key={item} className="hover:text-cyan-400 cursor-pointer transition">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* HERO */}
-        <section className="flex flex-col md:flex-row items-center justify-between px-10 md:px-20 py-28 md:py-36 gap-12">
-
-          {/* LEFT */}
-          <div className="max-w-lg">
-            <h4 className="text-cyan-400 text-sm mb-3 tracking-widest">
-              HI THERE,
-            </h4>
-
-            <h1 className="text-3xl md:text-5xl font-semibold leading-tight mb-4">
-              Junior QA <br />
-              <span className="text-cyan-400">Automation Engineer</span>
-            </h1>
-
-            <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-              I build automated tests using Playwright and Selenium, focusing on improving
-              software quality through real-world projects.
-            </p>
-
-            <div className="flex gap-4">
-              <button className="bg-cyan-400 text-black px-6 py-3 rounded-xl font-medium shadow-lg shadow-cyan-400/30 hover:scale-105 transition">
-                View Projects
-              </button>
-
-              <button className="border border-gray-400 px-6 py-3 rounded-xl hover:border-cyan-400 hover:text-cyan-400 transition">
-                GitHub
-              </button>
-            </div>
-          </div>
-
-          {/* RIGHT IMAGE */}
-          <div className="relative">
-            <div className="absolute inset-0 rounded-full blur-2xl bg-cyan-400/20"></div>
-
-            <img
-              src={heroImg}
-              alt="hero"
-              className="relative w-[200px] md:w-[260px] rounded-full 
-              border-4 border-cyan-400/40 shadow-xl object-cover"
-            />
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section className="px-10 md:px-20 py-20 max-w-4xl">
-          <h2 className="text-2xl font-semibold mb-6 text-cyan-400">About Me</h2>
-
-          <p className="text-gray-300 leading-relaxed">
-            I am a Computer Engineering graduate from the University of San Carlos – Talamban Campus,
-            currently pursuing a career as a Junior QA Automation Engineer. I have a background in
-            backend and automation development, giving me a strong understanding of how systems work
-            and how to design effective and maintainable test solutions. I am continuously building
-            my skills in automation testing, API testing, and modern testing frameworks.
+          <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+            I build automated tests using Playwright and Selenium, focusing on improving
+            software quality through real-world projects.
           </p>
-        </section>
 
-        {/* SKILLS */}
-        <section className="px-10 md:px-20 py-20">
-          <h2 className="text-2xl font-semibold mb-10 text-cyan-400">
-            Technologies & Tools
-          </h2>
+          <div className="flex gap-4">
+            <button className="bg-cyan-500 text-white px-6 py-3 rounded-xl font-medium shadow-md hover:scale-105 hover:shadow-cyan-500/30 active:scale-95 transition-all duration-200">
+              View Projects
+            </button>
 
-          <div className="mb-12">
-            <h3 className="text-lg font-medium mb-4 text-white">Development</h3>
-
-            <div className="flex flex-wrap gap-4 text-sm text-gray-300">
-              {devTech.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 border border-white/10 rounded-lg bg-white/5 backdrop-blur-sm hover:border-cyan-400 transition"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <button className="border border-gray-300 px-6 py-3 rounded-xl hover:border-cyan-500 hover:text-cyan-600 transition">
+              GitHub
+            </button>
           </div>
+        </motion.div>
 
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-white">QA & Automation</h3>
+        {/* IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="relative w-[220px] h-[220px] md:w-[260px] md:h-[260px] flex items-center justify-center"
+        >
+          {/* glow BEHIND */}
+          <div className="absolute w-full h-full rounded-full bg-cyan-400/10 blur-3xl -z-10"></div>
 
-            <div className="flex flex-wrap gap-4 text-sm text-gray-300">
-              {qaTools.map((tool) => (
-                <span
-                  key={tool}
-                  className="px-4 py-2 border border-cyan-400/20 rounded-lg bg-cyan-400/10 hover:bg-cyan-400/20 transition"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+          <img
+            src={heroImg}
+            alt="hero"
+            className="w-full h-full object-cover rounded-full border-4 border-cyan-400 shadow-lg"
+          />
+        </motion.div>
+      </section>
 
-        {/* EXPERIENCE */}
-        <section className="px-10 md:px-20 py-20 max-w-4xl">
-          <h2 className="text-2xl font-semibold mb-10 text-cyan-400">
-            Experience
-          </h2>
+      {/* ABOUT */}
+      <motion.section
+        id="about"
+        className="px-10 md:px-20 py-20 max-w-4xl"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold mb-6 text-cyan-600">About Me</h2>
 
-          <div className="space-y-10">
+        <p className="text-gray-600 leading-relaxed">
+          I am a Computer Engineering graduate from the University of San Carlos – Talamban Campus,
+          currently pursuing a career as a Junior QA Automation Engineer. I have a background in
+          backend and automation development, giving me a strong understanding of how systems work
+          and how to design effective and maintainable test solutions.
+        </p>
+      </motion.section>
 
-            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
-              <h3 className="font-semibold text-lg mb-2">
-                Backend Intern – Focus Bear
-              </h3>
-              <ul className="text-gray-300 list-disc ml-5 space-y-1">
-                <li>Assisted in backend development and system improvements</li>
-                <li>Worked with APIs and contributed to feature implementations</li>
-                <li>Gained experience in debugging and maintaining backend services</li>
-              </ul>
-            </div>
+      {/* SKILLS */}
+      <motion.section
+        id="skills"
+        className="px-10 md:px-20 py-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold mb-10 text-cyan-600">
+          Technologies & Tools
+        </h2>
 
-            <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
-              <h3 className="font-semibold text-lg mb-2">
-                AI Analyst – Innodata
-              </h3>
-              <ul className="text-gray-300 list-disc ml-5 space-y-1">
-                <li>Performed data analysis and annotation for AI systems</li>
-                <li>Ensured data accuracy and quality for machine learning models</li>
-                <li>Collaborated with teams to improve AI outputs and workflows</li>
-              </ul>
-            </div>
+        <div className="mb-12">
+          <h3 className="text-lg font-medium mb-4">Development</h3>
 
-          </div>
-        </section>
-
-        {/* CERTIFICATES */}
-        <section className="px-10 md:px-20 py-20">
-          <h2 className="text-2xl font-semibold mb-10 text-cyan-400">
-            Certificates
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {certificates.map((cert) => (
-              <div
-                key={cert.title}
-                className="bg-white/5 border border-white/10 rounded-xl overflow-hidden 
-                backdrop-blur-sm hover:border-cyan-400/30 transition group"
+          <div className="flex flex-wrap gap-4 text-sm">
+            {devTech.map((tech) => (
+              <span
+                key={tech}
+                className="px-4 py-2 border border-gray-200 rounded-lg bg-white/60 backdrop-blur-sm hover:border-cyan-500 transition"
               >
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-full h-40 object-cover group-hover:scale-105 transition duration-300"
-                />
-
-                <div className="p-4">
-                  <h3 className="text-sm font-medium text-gray-200">
-                    {cert.title}
-                  </h3>
-                </div>
-              </div>
+                {tech}
+              </span>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* CONTACT */}
-        <section className="px-10 md:px-20 py-20 text-center">
-          <h2 className="text-2xl font-semibold mb-6 text-cyan-400">
-            Let's Connect
-          </h2>
+        <div>
+          <h3 className="text-lg font-medium mb-4">QA & Automation</h3>
 
-          <p className="text-gray-300 mb-6">
-            Minglanilla, Cebu, Philippines
-          </p>
-
-          <div className="flex justify-center gap-6 text-sm">
-            <a href="#" className="hover:text-cyan-400 transition">Portfolio</a>
-            <a href="#" className="hover:text-cyan-400 transition">LinkedIn</a>
-            <a href="#" className="hover:text-cyan-400 transition">GitHub</a>
-            <a href="#" className="hover:text-cyan-400 transition">Email</a>
+          <div className="flex flex-wrap gap-4 text-sm">
+            {qaTools.map((tool) => (
+              <span
+                key={tool}
+                className="px-4 py-2 border border-cyan-200 rounded-lg bg-cyan-50 hover:bg-cyan-100 transition"
+              >
+                {tool}
+              </span>
+            ))}
           </div>
-        </section>
+        </div>
+      </motion.section>
 
-      </div>
+      {/* EXPERIENCE */}
+      <motion.section
+        id="experience"
+        className="px-10 md:px-20 py-20 max-w-4xl"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold mb-10 text-cyan-600">
+          Experience
+        </h2>
+
+        <div className="space-y-10">
+          <div className="bg-white/70 border border-gray-200 p-6 rounded-2xl backdrop-blur-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h3 className="font-semibold text-lg mb-2">
+              Backend Intern – Focus Bear
+            </h3>
+            <ul className="text-gray-600 list-disc ml-5 space-y-1">
+              <li>Assisted in backend development and system improvements</li>
+              <li>Worked with APIs and contributed to feature implementations</li>
+              <li>Gained experience in debugging backend services</li>
+            </ul>
+          </div>
+
+          <div className="bg-white/70 border border-gray-200 p-6 rounded-2xl backdrop-blur-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h3 className="font-semibold text-lg mb-2">
+              AI Analyst – Innodata
+            </h3>
+            <ul className="text-gray-600 list-disc ml-5 space-y-1">
+              <li>Performed data analysis and annotation</li>
+              <li>Ensured data quality for ML models</li>
+              <li>Improved workflows with team collaboration</li>
+            </ul>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* CERTIFICATES */}
+      <motion.section
+        id="certificates"
+        className="px-10 md:px-20 py-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold mb-10 text-cyan-600">
+          Certificates
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {certificates.map((cert) => (
+            <div
+              key={cert.title}
+              className="bg-white/70 border border-gray-200 rounded-2xl overflow-hidden backdrop-blur-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+            >
+              <img
+                src={cert.image}
+                alt={cert.title}
+                className="w-full h-40 object-cover group-hover:scale-105 transition"
+              />
+
+              <div className="p-4">
+                <h3 className="text-sm font-medium text-gray-700">
+                  {cert.title}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* CONTACT */}
+      <motion.section
+        id="contact"
+        className="px-10 md:px-20 py-20 text-center"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl font-semibold mb-6 text-cyan-600">
+          Let's Connect
+        </h2>
+
+        <p className="text-gray-600 mb-6">
+          Minglanilla, Cebu, Philippines
+        </p>
+
+        <div className="flex justify-center gap-6 text-sm text-gray-600">
+          <a href="#" className="hover:text-cyan-600">Portfolio</a>
+          <a href="#" className="hover:text-cyan-600">LinkedIn</a>
+          <a href="#" className="hover:text-cyan-600">GitHub</a>
+          <a href="#" className="hover:text-cyan-600">Email</a>
+        </div>
+      </motion.section>
     </div>
   );
 }
