@@ -1,5 +1,10 @@
 import heroImg from "./assets/hero.png";
 import bg from "./assets/bg.jpg";
+import agileCourse from "./assets/agileCourse.png";
+import softwareTest from "./assets/softwareTest.png";
+import automation from "./assets/Automation.png";
+import webDesign from "./assets/webDesign.png";
+import reactJs from "./assets/React_Js.png";
 import { motion } from "framer-motion";
 
 const navItems = ["Home", "About", "Skills", "Experience", "Certificates", "Contact"];
@@ -27,9 +32,26 @@ const qaTools = [
 ];
 
 const certificates = [
-  { title: "Playwright Automation Certificate", image: "/certs/playwright.png" },
-  { title: "Selenium WebDriver Certificate", image: "/certs/selenium.png" },
-  { title: "API Testing with Postman", image: "/certs/postman.png" },
+  {
+    title: "Software Processes and Agile Practices",
+    image: agileCourse,
+  },
+  {
+    title: "Introduction to Software Testing",
+    image: softwareTest,
+  },
+  {
+    title: "The Complete AI Agents & AI Automation Course (2025) - n8n",
+    image: automation,
+  },
+  {
+    title: "Legacy Responsive Web Design V8",
+    image: webDesign,
+  },
+  {
+    title: "React JS Tutorial",
+    image: reactJs,
+  },
 ];
 
 function App() {
@@ -224,7 +246,7 @@ function App() {
           Certificates
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.map((cert) => (
             <div
               key={cert.title}
@@ -233,7 +255,7 @@ function App() {
               <img
                 src={cert.image}
                 alt={cert.title}
-                className="w-full h-40 object-cover group-hover:scale-105 transition"
+                className="w-full object-contain group-hover:scale-105 transition"
               />
 
               <div className="p-4">
