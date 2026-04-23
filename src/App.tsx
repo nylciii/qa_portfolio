@@ -5,7 +5,11 @@ import softwareTest from "./assets/softwareTest.png";
 import automation from "./assets/Automation.png";
 import webDesign from "./assets/webDesign.png";
 import reactJs from "./assets/React_Js.png";
-import { motion } from "framer-motion";
+import linux from "./assets/Linux.png";
+import redhat from "./assets/Redhat.png";
+import qaAutomation from "./assets/QA_Automation.png";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const navItems = ["Home", "About", "Skills", "Experience", "Certificates", "Contact"];
 
@@ -49,17 +53,67 @@ const certificates = [
     image: webDesign,
   },
   {
-    title: "React JS Tutorial",
+    title: "React JS Fundamentals",
     image: reactJs,
+  },
+  {
+    title: "Linux Level 1",
+    image: linux,
+  },
+  {
+    title: "Red Hat Certified System Administrator (RHCSA)",
+    image: redhat,
+  },
+  {
+    title: "The Complete 2026 Software Testing Bootcamp",
+    image: qaAutomation,
   },
 ];
 
 function App() {
+  const [selectedCert, setSelectedCert] = useState<{ title: string; image: string } | null>(null);
+
   return (
     <div
       className="min-h-screen scroll-smooth text-gray-800 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bg})` }}
     >
+      {/* LIGHTBOX MODAL */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)}
+          >
+            <motion.div
+              className="relative max-w-4xl w-full"
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.title}
+                className="w-full rounded-2xl shadow-2xl"
+              />
+              <div className="mt-4 text-center text-white text-sm font-medium">
+                {selectedCert.title}
+              </div>
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="absolute -top-4 -right-4 w-9 h-9 bg-white text-gray-800 rounded-full flex items-center justify-center shadow-lg hover:bg-cyan-500 hover:text-white transition text-lg font-bold"
+              >
+                ×
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* NAVBAR */}
       <nav className="fixed w-full z-50 flex justify-between items-center px-10 md:px-20 py-5 backdrop-blur-md bg-white/40 border-b border-gray-200">
         <h1 className="text-cyan-600 font-bold text-2xl tracking-widest">
@@ -250,13 +304,16 @@ function App() {
           {certificates.map((cert) => (
             <div
               key={cert.title}
-              className="bg-white/70 border border-gray-200 rounded-2xl overflow-hidden backdrop-blur-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              onClick={() => setSelectedCert(cert)}
+              className="cursor-pointer bg-white/70 border border-gray-200 rounded-2xl overflow-hidden backdrop-blur-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
             >
-              <img
-                src={cert.image}
-                alt={cert.title}
-                className="w-full object-contain group-hover:scale-105 transition"
-              />
+              <div className="w-full h-52 bg-white flex items-center justify-center overflow-hidden">
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  className="w-full h-full object-contain group-hover:scale-105 transition p-2"
+                />
+              </div>
 
               <div className="p-4">
                 <h3 className="text-sm font-medium text-gray-700">
