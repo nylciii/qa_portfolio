@@ -116,10 +116,9 @@ const experiences = [
 // ── Cursor (desktop only) ─────────────────────────────────────────────────────
 function CursorEffect() {
   const [pos, setPos] = useState({ x: -200, y: -200 });
-  const [isTouch, setIsTouch] = useState(false);
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
   useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
     const move = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
@@ -287,11 +286,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 // ── App ───────────────────────────────────────────────────────────────────────
 function App() {
   const [selectedCert, setSelectedCert] = useState<{ title: string; image: string } | null>(null);
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
   return (
     <div
